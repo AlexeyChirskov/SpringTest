@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div><button id="button">Try it</button></div>
+    <div id="root"></div>
+    <script>
+        const button = document.querySelector("#button");
+        button.onclick = () => {
+        (async function myFunction() {
+            const response = await fetch("/data");
+            const data = await response.json();
+            console.log(response);
+            const str = `
+            <div>
+                <span>key</span>
+                <div>${data["key"]}</div>
+                <span>key1</span>
+                <div>${data["key1"]}</div>
+            </div>
+            `;
+            const root = document.querySelector("#root");
+            root.innerHTML = str;
+        })(); }
+    </script>
+</body>
+</html>
